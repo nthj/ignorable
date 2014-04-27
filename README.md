@@ -1,3 +1,5 @@
+[Donate to charity: water via Gittip](https://www.gittip.com/nthj/)
+
 ignorable
 =========
 
