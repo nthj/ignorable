@@ -19,3 +19,7 @@ Usage
        ignore_columns :attributes, :class, :meta_column_used_by_another_app
     end
 
+Rails Versions
+==============
+
+Tested on Rails 3.2, Rails 4.1.0. 
