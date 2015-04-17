@@ -1,10 +1,10 @@
 require 'active_record'
 
 module Ignorable
-  extend ActiveSupport::Concern
-  
-  def attribute_names # :nodoc:
-    super.reject{|col| self.class.ignored_column?(col)}
+  module InstanceMethods
+    def attribute_names # :nodoc:
+      super.reject{|col| self.class.ignored_column?(col)}
+    end
   end
 
   module ClassMethods
@@ -47,6 +47,7 @@ module Ignorable
   end
 end
 
-if defined?(ActiveRecord::Base) && !ActiveRecord::Base.include?(Ignorable)
-  ActiveRecord::Base.send :include, Ignorable
+unless ActiveRecord::Base.include?(Ignorable::InstanceMethods)
+  ActiveRecord::Base.send :include, Ignorable::InstanceMethods
+  ActiveRecord::Base.send :extend, Ignorable::ClassMethods
 end
