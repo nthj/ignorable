@@ -67,6 +67,11 @@ describe Ignorable do
     end
   end
 
+  it "should remove the columns from the attributes hash" do
+    expect(TestModel.new.attributes.keys.sort).to eql ["id", "name"]
+    expect(Thing.new.attributes.keys.sort).to eql ["id", "test_model_id", "value"]
+  end
+
   it "should remove the columns from the attribute names" do
     expect(TestModel.new.attribute_names.sort).to eql ["id", "name"]
     expect(Thing.new.attribute_names.sort).to eql ["id", "test_model_id", "value"]
