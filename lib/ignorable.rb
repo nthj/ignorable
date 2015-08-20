@@ -3,6 +3,10 @@ require 'active_support/core_ext/class/attribute'
 
 module Ignorable
   module InstanceMethods
+    def attributes # :nodoc:
+      super.reject{|col, _val| self.class.ignored_column?(col)}
+    end
+
     def attribute_names # :nodoc:
       super.reject{|col| self.class.ignored_column?(col)}
     end
