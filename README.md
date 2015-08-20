@@ -1,6 +1,6 @@
 [Donate to charity: water via Gittip](https://www.gittip.com/nthj/)
 
-**Fork from [nthj/ignorable]()**
+**Fork from [nthj/ignorable](https://github.com/nthj/ignorable/)**
 
 The fork updates ignorable to be Rails 4.2 compatible
 
