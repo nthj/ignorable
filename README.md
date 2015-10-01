@@ -1,5 +1,9 @@
 [Donate to charity: water via Gittip](https://www.gittip.com/nthj/)
 
+**Fork from [nthj/ignorable](https://github.com/nthj/ignorable/)**
+
+The fork updates ignorable to be Rails 4.2 compatible
+
 ignorable
 =========
 
@@ -22,4 +26,4 @@ Usage
 Rails Versions
 ==============
 
-Tested on Rails 3.2, Rails 4.1.0. 
+Tested on Rails 3.2, Rails 4.1.0, Rails 4.2.3
