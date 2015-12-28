@@ -22,4 +22,7 @@ Usage
 Rails Versions
 ==============
 
-Tested on Rails 3.2, Rails 4.1.0. 
+Tested on Rails 3.2, Rails 4.1.0.
+
+This gem is not needed on Rails 5.0 because an `ignored_columns` feature has
+been merged in https://github.com/rails/rails/pull/21720
