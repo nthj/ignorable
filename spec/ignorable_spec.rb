@@ -78,8 +78,8 @@ describe Ignorable do
   end
 
   it "should remove the accessor methods" do
-    expect(TestModel.new).to_not respond_to(:updated_at)
-    expect(TestModel.new).to_not respond_to(:updated_at=)
+    expect(TestModel.new).to_not respond_to(:legacy)
+    expect(TestModel.new).to_not respond_to(:legacy=)
   end
 
   it "should not override existing methods with ignored column accessors" do
@@ -90,6 +90,16 @@ describe Ignorable do
   end
 
   it "should not affect inserts" do
+    model = TestModel.create!(:name => "test")
+    model.reload
+    expect(model.name).to eql "test"
+    expect(model.attributes["legacy"]).to be_nil
+  end
+
+  it "should not affect inserts if column is dropped" do
+    # Drop column first to make sure it isn't trying to insert NULL into column
+    TestModel.connection.remove_column :test_models, :legacy
+
     model = TestModel.create!(:name => "test")
     model.reload
     expect(model.name).to eql "test"
