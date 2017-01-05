@@ -10,6 +10,14 @@ module Ignorable
     def attribute_names # :nodoc:
       super.reject{|col| self.class.ignored_column?(col)}
     end
+
+    def attribute_method?(attr_name) # :nodoc:
+      if self.class.ignored_column?(attr_name)
+        false
+      else
+        super
+      end
+    end
   end
 
   module ClassMethods
