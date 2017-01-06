@@ -37,8 +37,13 @@ module Ignorable
     def ignore_columns(*columns)
       self.ignored_columns ||= []
       self.ignored_columns += columns.map(&:to_s)
-      reset_column_information
-      descendants.each(&:reset_column_information)
+
+      # Don't try to reset column info if there is no connection
+      if connected?
+        reset_column_information
+        descendants.each(&:reset_column_information)
+      end
+
       self.ignored_columns.tap(&:uniq!)
     end
     alias ignore_column ignore_columns
