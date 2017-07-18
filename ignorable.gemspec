@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.summary     = "Ignore columns in ActiveRecord models"
   s.description = "Ignore problematic column names (like 'attributes' or 'class') in ActiveRecord models for legacy database schemas"
 
-  s.add_runtime_dependency("activerecord", ">= 3")
+  s.add_runtime_dependency 'activerecord', '>= 3', '< 5'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '>= 2'
   s.add_development_dependency 'sqlite3'
