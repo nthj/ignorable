@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "ignorable"
-  s.version     = "0.3.0"
+  s.version     = "0.4.0"
   s.authors     = ["Nathaniel Jones", "Mando Escamilla"]
   s.email       = ["nj@third.io", ""]
   s.homepage    = "http://github.com/nthj/ignorable"
