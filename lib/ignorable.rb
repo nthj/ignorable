@@ -10,6 +10,14 @@ module Ignorable
     def attribute_names # :nodoc:
       super.reject{|col| self.class.ignored_column?(col)}
     end
+
+    def attribute_method?(attr_name) # :nodoc:
+      if self.class.ignored_column?(attr_name)
+        false
+      else
+        super
+      end
+    end
   end
 
   module ClassMethods
@@ -29,8 +37,13 @@ module Ignorable
     def ignore_columns(*columns)
       self.ignored_columns ||= []
       self.ignored_columns += columns.map(&:to_s)
-      reset_column_information
-      descendants.each(&:reset_column_information)
+
+      # Don't try to reset column info if there is no connection
+      if connected?
+        reset_column_information
+        descendants.each(&:reset_column_information)
+      end
+
       self.ignored_columns.tap(&:uniq!)
     end
     alias ignore_column ignore_columns
