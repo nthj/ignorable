@@ -10,6 +10,16 @@ module Ignorable
     def attribute_names # :nodoc:
       super.reject{|col| self.class.ignored_column?(col)}
     end
+    
+    def attribute_method?(attr_name) # :nodoc:
+      # attribute_method? WAS going through AR:PrimaryKey, then AR:AttributeMethods.  
+      # AR:AttributeMethods uses @attributes... which I'll do too
+      attr_name == "id" ||
+        ( defined?(@attributes) && @attributes.key?(attr_name) &&
+          (ignored_column_list.blank? || !ignored_column_list.include?(attr_name))
+        )
+    end
+
   end
 
   module ClassMethods
