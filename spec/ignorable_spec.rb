@@ -127,4 +127,9 @@ describe Ignorable do
     results = Thing.connection.select_one("SELECT id, value, test_model_id, updated_at, created_at FROM things where id = #{thing.id}")
     expect(results).to eql({"id" => 1, "value" => 10, "test_model_id" => 1, "updated_at" => nil, "created_at" => nil})
   end
+  
+  it "should not create methods for ignored attributes" do
+    model = TestModel.new
+    expect{ model.legacy = 'old' }.to raise_error(NoMethodError)
+  end
 end
